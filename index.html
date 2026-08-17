@@ -6,9 +6,7 @@
 <title>Studio25 Radio</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
@@ -17,118 +15,290 @@ body{
     justify-content:center;
     align-items:center;
     padding:20px;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial,sans-serif;
     background:
-        radial-gradient(circle at top,#3158b8 0%,transparent 38%),
-        linear-gradient(145deg,#081329,#173b82,#10285c);
+        radial-gradient(circle at 50% 20%,#35135f 0%,transparent 35%),
+        linear-gradient(145deg,#030305,#0b0712,#020204);
+    color:white;
 }
 
 .player{
     width:100%;
     max-width:430px;
-    background:rgba(255,255,255,0.97);
-    border-radius:30px;
-    padding:42px 28px 35px;
+    padding:32px 25px 30px;
     text-align:center;
-    box-shadow:0 25px 60px rgba(0,0,0,.40);
+    border-radius:30px;
+    background:linear-gradient(145deg,#111019,#050507);
+    border:1px solid rgba(190,80,255,.35);
+    box-shadow:
+        0 0 35px rgba(160,50,255,.22),
+        inset 0 0 35px rgba(255,255,255,.025);
+}
+
+.brand{
+    font-size:14px;
+    letter-spacing:4px;
+    color:#c98cff;
+    margin-bottom:20px;
 }
 
 .logo{
-    width:105px;
-    height:105px;
-    margin:0 auto 22px;
+    width:125px;
+    height:125px;
+    margin:auto;
     border-radius:50%;
-    background:linear-gradient(145deg,#3478ff,#1855d5);
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:43px;
+    font-weight:900;
     color:white;
-    font-size:40px;
-    font-weight:800;
+    background:linear-gradient(145deg,#7b20d1,#24083d);
+    border:2px solid #c36cff;
     box-shadow:
-        0 12px 30px rgba(37,99,235,.35),
-        inset 0 2px 8px rgba(255,255,255,.25);
+        0 0 18px #9c35ff,
+        0 0 55px rgba(170,50,255,.45),
+        inset 0 0 25px rgba(255,255,255,.12);
 }
 
-h1{
-    margin:0;
-    color:#111827;
-    font-size:32px;
-    letter-spacing:-1px;
+.title{
+    margin-top:18px;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:1px;
 }
 
 .subtitle{
-    margin-top:8px;
-    color:#6b7280;
-    font-size:16px;
-}
-
-.status{
-    margin-top:14px;
-    color:#16a34a;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.dot{
-    display:inline-block;
-    width:11px;
-    height:11px;
-    margin-right:7px;
-    border-radius:50%;
-    background:#22c55e;
-    box-shadow:0 0 10px #22c55e;
-}
-
-.play-button{
-    width:145px;
-    height:145px;
-    margin:35px auto 28px;
-    border:0;
-    border-radius:50%;
-    background:linear-gradient(145deg,#3478ff,#1855d5);
-    color:white;
-    font-size:55px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    box-shadow:
-        0 15px 35px rgba(37,99,235,.42),
-        inset 0 2px 8px rgba(255,255,255,.22);
-    transition:.2s;
-}
-
-.play-button:active{
-    transform:scale(.94);
-}
-
-.play-icon{
-    margin-left:7px;
-}
-
-.playing{
-    animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-    0%{
-        box-shadow:0 15px 35px rgba(37,99,235,.42);
-    }
-    50%{
-        box-shadow:0 15px 45px rgba(37,99,235,.75);
-    }
-    100%{
-        box-shadow:0 15px 35px rgba(37,99,235,.42);
-    }
-}
-
-.message{
-    color:#6b7280;
-    font-size:17px;
-    line-height:1.5;
+    margin-top:6px;
+    color:#aaa5b4;
+    font-size:15px;
 }
 
 .live{
-    color:#16a34a;
-   
+    margin-top:13px;
+    color:#ff4f78;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.live-dot{
+    display:inline-block;
+    width:9px;
+    height:9px;
+    margin-right:6px;
+    border-radius:50%;
+    background:#ff315f;
+    box-shadow:0 0 12px #ff315f;
+    animation:blink 1.2s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.35}
+}
+
+/* ECUALIZADOR */
+.equalizer{
+    height:85px;
+    margin:25px auto 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+
+.bar{
+    width:6px;
+    height:22px;
+    border-radius:6px;
+    background:linear-gradient(to top,#7b20d1,#e88cff);
+    box-shadow:0 0 10px rgba(195,108,255,.8);
+}
+
+.playing .bar{
+    animation:equalize .65s ease-in-out infinite alternate;
+}
+
+.bar:nth-child(1){animation-delay:.05s}
+.bar:nth-child(2){animation-delay:.20s}
+.bar:nth-child(3){animation-delay:.35s}
+.bar:nth-child(4){animation-delay:.10s}
+.bar:nth-child(5){animation-delay:.30s}
+.bar:nth-child(6){animation-delay:.15s}
+.bar:nth-child(7){animation-delay:.40s}
+.bar:nth-child(8){animation-delay:.25s}
+.bar:nth-child(9){animation-delay:.05s}
+.bar:nth-child(10){animation-delay:.30s}
+.bar:nth-child(11){animation-delay:.15s}
+.bar:nth-child(12){animation-delay:.40s}
+.bar:nth-child(13){animation-delay:.20s}
+
+@keyframes equalize{
+    from{height:12px}
+    to{height:70px}
+}
+
+.play{
+    width:88px;
+    height:88px;
+    margin:auto;
+    border:0;
+    border-radius:50%;
+    cursor:pointer;
+    color:white;
+    font-size:32px;
+    background:linear-gradient(145deg,#a238ff,#54109a);
+    box-shadow:
+        0 0 18px rgba(178,60,255,.8),
+        0 0 45px rgba(178,60,255,.35),
+        inset 0 2px 8px rgba(255,255,255,.2);
+    transition:.2s;
+}
+
+.play:active{
+    transform:scale(.93);
+}
+
+.message{
+    margin-top:20px;
+    color:#aaa5b4;
+    font-size:15px;
+}
+
+.slogan{
+    margin-top:25px;
+    color:#e8d5ff;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.share{
+    margin-top:22px;
+    padding:11px 20px;
+    border:1px solid #8637bd;
+    border-radius:25px;
+    background:#130b1c;
+    color:#dca8ff;
+    cursor:pointer;
+}
+
+.footer{
+    margin-top:20px;
+    color:#65606d;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player">
+
+    <div class="brand">STUDIO25 • RADIO</div>
+
+    <div class="logo">25</div>
+
+    <div class="title">Studio25 Radio</div>
+
+    <div class="subtitle">Música y entretención</div>
+
+    <div class="live">
+        <span class="live-dot"></span>EN VIVO
+    </div>
+
+    <div class="equalizer" id="equalizer">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <button class="play" id="play">▶</button>
+
+    <div class="message" id="message">
+        Presiona PLAY para escuchar
+    </div>
+
+    <div class="slogan">
+        Tu música, en todo momento 🎵
+    </div>
+
+    <button class="share" id="share">
+        ↗ Compartir Studio25
+    </button>
+
+    <div class="footer">
+        Studio25 Radio
+    </div>
+
+    <audio id="radio" preload="none">
+        <source src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+
+<script>
+const radio = document.getElementById("radio");
+const play = document.getElementById("play");
+const equalizer = document.getElementById("equalizer");
+const message = document.getElementById("message");
+const share = document.getElementById("share");
+
+play.addEventListener("click", function(){
+
+    if(radio.paused){
+
+        radio.play().then(function(){
+
+            play.textContent="❚❚";
+            equalizer.classList.add("playing");
+            message.textContent="Estás escuchando Studio25 en vivo 🎶";
+
+        }).catch(function(){
+
+            message.textContent="No se pudo iniciar el audio. Presiona PLAY nuevamente.";
+
+        });
+
+    }else{
+
+        radio.pause();
+
+        play.textContent="▶";
+        equalizer.classList.remove("playing");
+        message.textContent="Presiona PLAY para escuchar";
+
+    }
+});
+
+share.addEventListener("click", async function(){
+
+    const url="https://studior25-hub.github.io/studio25-player/";
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"Studio25 Radio",
+            text:"Escucha Studio25 Radio en vivo 🎙️📻",
+            url:url
+        });
+
+    }else{
+
+        await navigator.clipboard.writeText(url);
+        message.textContent="¡Enlace copiado para compartir!";
+
+    }
+});
+</script>
+
+</body>
+</html>
