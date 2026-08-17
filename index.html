@@ -38,7 +38,6 @@ body{
     backdrop-filter:blur(10px);
 }
 
-/* LOGO */
 .logo{
     width:260px;
     max-width:80%;
@@ -50,7 +49,6 @@ body{
         0 0 45px rgba(239,68,68,.15);
 }
 
-/* ECUALIZADOR */
 .equalizer{
     height:75px;
     display:flex;
@@ -99,7 +97,6 @@ body{
     100%{height:50px}
 }
 
-/* BOTÓN */
 .play-button{
     width:82px;
     height:82px;
@@ -147,6 +144,25 @@ body{
 
 .status.live{
     color:#22c55e;
+}
+
+/* BOTÓN COMPARTIR */
+
+.share-button{
+    margin-top:22px;
+    padding:12px 22px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(145deg,#2196ff,#1261c9);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 18px rgba(33,150,255,.35);
+}
+
+.share-button:active{
+    transform:scale(.96);
 }
 
 audio{
@@ -205,6 +221,10 @@ audio{
         Presiona ▶ para escuchar Studio25
     </div>
 
+    <button class="share-button" id="shareButton">
+        📲 Compartir la radio
+    </button>
+
     <audio id="radio">
         <source src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3" type="audio/mpeg">
     </audio>
@@ -217,6 +237,7 @@ const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
 const status = document.getElementById("status");
 const bars = document.querySelectorAll(".bar");
+const shareButton = document.getElementById("shareButton");
 
 button.addEventListener("click",function(){
 
@@ -251,8 +272,56 @@ button.addEventListener("click",function(){
 });
 
 radio.addEventListener("ended",function(){
+
     button.textContent="▶";
     button.classList.remove("playing");
+
+    status.textContent="Presiona ▶ para escuchar Studio25";
+    status.classList.remove("live");
+
+    bars.forEach(bar=>{
+        bar.style.animationPlayState="paused";
+    });
+
+});
+
+
+/* COMPARTIR RADIO */
+
+shareButton.addEventListener("click",async function(){
+
+    const shareData={
+        title:"Studio25 Radio",
+        text:"🎵 Escucha Studio25 Radio en vivo",
+        url:window.location.href
+    };
+
+    if(navigator.share){
+
+        try{
+            await navigator.share(shareData);
+        }catch(error){
+            console.log("Compartir cancelado");
+        }
+
+    }else{
+
+        try{
+
+            await navigator.clipboard.writeText(window.location.href);
+
+            shareButton.textContent="✅ Enlace copiado";
+
+            setTimeout(()=>{
+                shareButton.textContent="📲 Compartir la radio";
+            },2000);
+
+        }catch(error){
+
+            alert("Copia este enlace para compartir Studio25: " + window.location.href);
+
+        }
+    }
 });
 
 </script>
