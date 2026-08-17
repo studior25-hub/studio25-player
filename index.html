@@ -41,9 +41,9 @@ body{
 .logo{
     width:260px;
     max-width:80%;
-    border-radius:50%;
     display:block;
     margin:0 auto 20px;
+    border-radius:50%;
     box-shadow:
         0 0 25px rgba(37,99,235,.35),
         0 0 45px rgba(239,68,68,.15);
@@ -146,8 +146,6 @@ body{
     color:#22c55e;
 }
 
-/* BOTÓN COMPARTIR */
-
 .share-button{
     margin-top:22px;
     padding:12px 22px;
@@ -191,7 +189,8 @@ audio{
         alt="Studio25 Radio"
     >
 
-    <div class="equalizer" id="equalizer">
+    <div class="equalizer">
+
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
@@ -213,6 +212,7 @@ audio{
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
+
     </div>
 
     <button class="play-button" id="playButton">▶</button>
@@ -226,7 +226,9 @@ audio{
     </button>
 
     <audio id="radio">
-        <source src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3" type="audio/mpeg">
+        <source
+            src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3"
+            type="audio/mpeg">
     </audio>
 
 </div>
@@ -238,6 +240,9 @@ const button = document.getElementById("playButton");
 const status = document.getElementById("status");
 const bars = document.querySelectorAll(".bar");
 const shareButton = document.getElementById("shareButton");
+
+const RADIO_PAGE =
+    "https://studior25-hub.github.io/studio25-player/";
 
 button.addEventListener("click",function(){
 
@@ -269,6 +274,7 @@ button.addEventListener("click",function(){
             bar.style.animationPlayState="paused";
         });
     }
+
 });
 
 radio.addEventListener("ended",function(){
@@ -285,15 +291,12 @@ radio.addEventListener("ended",function(){
 
 });
 
-
-/* COMPARTIR RADIO */
-
 shareButton.addEventListener("click",async function(){
 
     const shareData={
         title:"Studio25 Radio",
         text:"🎵 Escucha Studio25 Radio en vivo",
-        url:window.location.href
+        url:RADIO_PAGE
     };
 
     if(navigator.share){
@@ -308,7 +311,7 @@ shareButton.addEventListener("click",async function(){
 
         try{
 
-            await navigator.clipboard.writeText(window.location.href);
+            await navigator.clipboard.writeText(RADIO_PAGE);
 
             shareButton.textContent="✅ Enlace copiado";
 
@@ -318,10 +321,15 @@ shareButton.addEventListener("click",async function(){
 
         }catch(error){
 
-            alert("Copia este enlace para compartir Studio25: " + window.location.href);
+            alert(
+                "Copia este enlace para compartir Studio25:\n\n"
+                + RADIO_PAGE
+            );
 
         }
+
     }
+
 });
 
 </script>
