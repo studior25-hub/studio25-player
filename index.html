@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio25 Radio</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    font-family:Arial,sans-serif;
+}
+
+.player{
+    width:90%;
+    max-width:420px;
+    background:white;
+    border-radius:24px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:50%;
+    background:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+h1{
+    margin:18px 0 5px;
+    color:#111827;
+}
+
+.status{
+    color:#16a34a;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+button{
+    width:90px;
+    height:90px;
+    border:none;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    font-size:38px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(37,99,235,.4);
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+.texto{
+    margin-top:22px;
+    color:#6b7280;
+    font-size:14px;
+}
+
+audio{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player">
+
+    <div class="logo">25</div>
+
+    <h1>Studio25 Radio</h1>
+
+    <div class="status">● EN VIVO</div>
+
+    <audio id="radio"
+    src="https://app.aloncast.com/api/stream/studio25-radio-online-13fbee">
+    </audio>
+
+    <button id="play">▶</button>
+
+    <div class="texto">
+        Música y entretención 🎶<br>
+        Escúchanos en vivo
+    </div>
+
+</div>
+
+<script>
+const radio = document.getElementById("radio");
+const play = document.getElementById("play");
+
+play.onclick = function(){
+
+    if(radio.paused){
+        radio.play();
+        play.innerHTML = "❚❚";
+    }else{
+        radio.pause();
+        play.innerHTML = "▶";
+    }
+
+};
+</script>
+
+</body>
+</html>
