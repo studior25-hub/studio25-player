@@ -3,334 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio25 Radio</title>
+
+<title>Studio25 Radio Online</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
- margin:0;
- min-height:100vh;
- padding:8px;
- display:flex;
- justify-content:center;
- align-items:center;
- font-family:Arial,Helvetica,sans-serif;
- color:#fff;
- background:
- radial-gradient(circle at 15% 20%,#18295c 0,transparent 35%),
- radial-gradient(circle at 85% 80%,#40144d 0,transparent 35%),
- #030711;
+* {
+  box-sizing: border-box;
 }
 
-.player{
- width:min(500px,100%);
- padding:14px 16px 16px;
- border-radius:22px;
- background:rgba(4,9,20,.96);
- border:1px solid #27334d;
- box-shadow:0 0 35px rgba(0,110,255,.15);
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #111;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.top{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:7px;
+.player {
+  width: min(92%, 420px);
+  background: #181818;
+  border-radius: 22px;
+  padding: 22px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 12px 35px rgba(0,0,0,.45);
 }
 
-.live-title{
- font-size:22px;
- font-weight:800;
+.logo {
+  width: 150px;
+  max-width: 70%;
+  margin: 0 auto 10px;
+  display: block;
 }
 
-.live-title.offline{color:#b8bec9}
-.live-title.online{color:#ff3030}
-
-.station{
- font-size:18px;
- font-weight:700;
- margin-top:1px;
+h1 {
+  margin: 5px 0 2px;
+  font-size: 25px;
 }
 
-.status{
- padding:7px 10px;
- border:1px solid #27334d;
- border-radius:20px;
- color:#b8bec9;
- font-size:13px;
- white-space:nowrap;
+.subtitle {
+  font-size: 13px;
+  opacity: .7;
+  margin-bottom: 15px;
 }
 
-.status-dot{
- display:inline-block;
- width:8px;
- height:8px;
- margin-right:5px;
- border-radius:50%;
- background:#777;
+.status {
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  min-height: 18px;
 }
 
-.status.online{
- color:#d9dce4;
+.play-button {
+  width: 72px;
+  height: 72px;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: #111;
+  font-size: 30px;
+  cursor: pointer;
+  margin: 5px auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.status.online .status-dot{
- background:#20e879;
- box-shadow:0 0 9px #20e879;
+.play-button:active {
+  transform: scale(.96);
 }
 
-.description{
- text-align:center;
- font-size:15px;
- color:#e0e2e8;
- margin-bottom:6px;
+.equalizer {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 10px 0;
 }
 
-.logo{
- width:100%;
- max-width:330px;
- max-height:245px;
- object-fit:contain;
- display:block;
- margin:0 auto 5px;
+.bar {
+  width: 5px;
+  height: 8px;
+  background: white;
+  border-radius: 4px;
 }
 
-.now-playing-title{
- text-align:center;
- color:#2196ff;
- font-size:21px;
- font-weight:800;
- margin:3px 0 6px;
+.equalizer.active .bar {
+  animation: equalize .55s infinite ease-in-out alternate;
 }
 
-.song{
- text-align:center;
- font-size:22px;
- line-height:1.15;
- font-weight:400;
- min-height:26px;
+.bar:nth-child(2) { animation-delay: .1s; }
+.bar:nth-child(3) { animation-delay: .2s; }
+.bar:nth-child(4) { animation-delay: .3s; }
+.bar:nth-child(5) { animation-delay: .15s; }
+.bar:nth-child(6) { animation-delay: .25s; }
+.bar:nth-child(7) { animation-delay: .05s; }
+
+@keyframes equalize {
+  from { height: 7px; }
+  to { height: 38px; }
 }
 
-.artist{
- text-align:center;
- font-size:16px;
- color:#42a5ff;
- margin-top:3px;
- min-height:19px;
-}
-
-.equalizer{
- height:42px;
- margin:5px auto;
- display:flex;
- justify-content:center;
- align-items:flex-end;
- gap:3px;
-}
-
-.bar{
- width:5px;
- height:7px;
- border-radius:4px;
- background:linear-gradient(to top,#168cff,#8d4cff,#ff43d1);
- box-shadow:0 0 7px rgba(40,150,255,.6);
- animation:equalize .8s ease-in-out infinite alternate;
- animation-play-state:paused;
-}
-
-.equalizer.playing .bar{
- animation-play-state:running;
-}
-
-.bar:nth-child(2){animation-delay:.10s}
-.bar:nth-child(3){animation-delay:.25s}
-.bar:nth-child(4){animation-delay:.40s}
-.bar:nth-child(5){animation-delay:.15s}
-.bar:nth-child(6){animation-delay:.35s}
-.bar:nth-child(7){animation-delay:.05s}
-.bar:nth-child(8){animation-delay:.30s}
-.bar:nth-child(9){animation-delay:.20s}
-.bar:nth-child(10){animation-delay:.45s}
-.bar:nth-child(11){animation-delay:.10s}
-.bar:nth-child(12){animation-delay:.30s}
-.bar:nth-child(13){animation-delay:.15s}
-.bar:nth-child(14){animation-delay:.40s}
-.bar:nth-child(15){animation-delay:.20s}
-.bar:nth-child(16){animation-delay:.35s}
-.bar:nth-child(17){animation-delay:.05s}
-.bar:nth-child(18){animation-delay:.25s}
-.bar:nth-child(19){animation-delay:.10s}
-.bar:nth-child(20){animation-delay:.40s}
-.bar:nth-child(21){animation-delay:.20s}
-
-@keyframes equalize{
- 0%{height:7px}
- 50%{height:34px}
- 100%{height:24px}
-}
-
-.play-button{
- width:92px;
- height:92px;
- display:flex;
- justify-content:center;
- align-items:center;
- margin:3px auto 8px;
- border-radius:50%;
- border:2px solid #2196ff;
- background:#07101e;
- color:white;
- font-size:38px;
- cursor:pointer;
- box-shadow:0 0 18px rgba(33,150,255,.38);
-}
-
-.play-button:active{
- transform:scale(.94);
-}
-
-.playing-button{
- animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
- 50%{box-shadow:0 0 32px rgba(37,99,235,.75)}
-}
-
-.volume{
- display:flex;
- align-items:center;
- gap:9px;
- margin:2px 20px 9px;
-}
-
-.volume-icon{
- font-size:20px;
-}
-
-.volume input{
- flex:1;
- height:18px;
- accent-color:#2196ff;
-}
-
-.share-button{
- width:100%;
- padding:10px;
- border-radius:24px;
- border:1px solid #2196ff;
- background:linear-gradient(90deg,rgba(20,65,150,.45),rgba(100,20,100,.45));
- color:white;
- font-size:16px;
- font-weight:700;
- cursor:pointer;
- margin-bottom:10px;
-}
-
-.footer-info{
- border-top:1px solid #27334d;
- padding-top:8px;
- text-align:center;
- color:#cbd0dc;
- font-size:16px;
- line-height:1.25;
-}
-
-.footer-info strong{color:#fff}
-
-.footer-sub{
- color:#aeb5c4;
- font-size:14px;
-}
-
-.thanks{
- margin-top:8px;
- padding:8px;
- border:1px solid #27334d;
- border-radius:18px;
- text-align:center;
- font-size:14px;
- color:#d8dce5;
-}
-
-.thanks strong{color:#2196ff}
-
-audio{display:none}
-
-@media(max-width:450px){
-
- body{
-  padding:5px;
-  align-items:center;
- }
-
- .player{
-  padding:11px 12px 12px;
-  border-radius:20px;
- }
-
- .live-title{font-size:20px}
- .station{font-size:16px}
-
- .status{
-  font-size:11px;
-  padding:6px 8px;
- }
-
- .description{
-  font-size:14px;
-  margin-bottom:3px;
- }
-
- .logo{
-  max-width:285px;
-  max-height:205px;
-  margin-bottom:2px;
- }
-
- .now-playing-title{
-  font-size:19px;
-  margin:2px 0 4px;
- }
-
- .song{font-size:20px}
- .artist{font-size:14px}
-
- .equalizer{
-  height:35px;
-  margin:3px auto;
- }
-
- .play-button{
-  width:82px;
-  height:82px;
-  font-size:34px;
-  margin:2px auto 6px;
- }
-
- .volume{
-  margin:1px 15px 6px;
- }
-
- .share-button{
-  padding:9px;
-  font-size:15px;
-  margin-bottom:7px;
- }
-
- .footer-info{
-  padding-top:6px;
-  font-size:15px;
- }
-
- .footer-sub{font-size:13px}
-
- .thanks{
-  margin-top:6px;
-  padding:6px;
-  font-size:13px;
- }
+.location {
+  margin-top: 12px;
+  font-size: 12px;
+  opacity: .65;
 }
 </style>
 </head>
@@ -339,398 +119,105 @@ audio{display:none}
 
 <div class="player">
 
-<div class="top">
+  <!-- Reemplaza solamente este archivo si tu logo actual tiene otro nombre -->
+  <img src="logo.png" class="logo" alt="Studio25">
 
- <div>
-  <div class="live-title offline" id="liveTitle">
-   ● RADIO APAGADA
+  <h1>Studio25</h1>
+  <div class="subtitle">Radio Online</div>
+
+  <div id="status" class="status">ESPERANDO TRANSMISIÓN</div>
+
+  <button id="playButton" class="play-button">▶</button>
+
+  <div id="equalizer" class="equalizer">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </div>
 
-  <div class="station">Studio25</div>
- </div>
+  <div class="location">Desde Longaví, Chile</div>
 
- <div class="status" id="status">
-  <span class="status-dot"></span>
-  Fuera de línea
- </div>
-
-</div>
-
-<div class="description">
- Llevando música y entretención para ti
-</div>
-
-<img
- class="logo"
- src="file_000000001a74720e9d613f259602beca.png"
- alt="Studio25 Radio">
-
-<div class="now-playing-title">
- ♪ SONANDO AHORA
-</div>
-
-<div class="song" id="song">
- Esperando transmisión...
-</div>
-
-<div class="artist" id="artist">
- Studio25
-</div>
-
-<div class="equalizer" id="equalizer">
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div><div class="bar"></div>
- <div class="bar"></div>
-</div>
-
-<button class="play-button" id="playButton">▶</button>
-
-<div class="volume">
- <div class="volume-icon">🔊</div>
- <input
-  id="volume"
-  type="range"
-  min="0"
-  max="1"
-  step="0.01"
-  value="0.85">
-</div>
-
-<button class="share-button" id="shareButton">
- 📤 Compartir radio
-</button>
-
-<div class="footer-info">
- <strong>🌎 Longaví</strong>
- <div class="footer-sub">Para el mundo</div>
-</div>
-
-<div class="thanks">
- ❤️ Gracias por preferir <strong>Studio25</strong>
-</div>
-
-<audio id="radio" preload="none">
- <source
-  src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3"
-  type="audio/mpeg">
-</audio>
+  <audio id="radioAudio" preload="none">
+    <source
+      src="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3"
+      type="audio/mpeg">
+  </audio>
 
 </div>
 
 <script>
+const audio = document.getElementById("radioAudio");
+const button = document.getElementById("playButton");
+const status = document.getElementById("status");
+const equalizer = document.getElementById("equalizer");
 
-const radio=document.getElementById("radio");
-const playButton=document.getElementById("playButton");
-const equalizer=document.getElementById("equalizer");
-const volume=document.getElementById("volume");
-
-const song=document.getElementById("song");
-const artist=document.getElementById("artist");
-
-const liveTitle=document.getElementById("liveTitle");
-const status=document.getElementById("status");
-const shareButton=document.getElementById("shareButton");
-
-let connectionTimer=null;
-let audioConfirmed=false;
-
-
-/* VOLUMEN */
-
-radio.volume=.85;
-
-volume.addEventListener("input",()=>{
- radio.volume=volume.value;
-});
-
-
-/* ESTADO APAGADO */
-
-function setOffline(){
-
- audioConfirmed=false;
-
- if(connectionTimer){
-  clearTimeout(connectionTimer);
-  connectionTimer=null;
- }
-
- liveTitle.textContent="● RADIO APAGADA";
- liveTitle.className="live-title offline";
-
- status.innerHTML=
-  '<span class="status-dot"></span> Fuera de línea';
-
- status.className="status";
-
- song.textContent="Esperando transmisión...";
- artist.textContent="Studio25";
-
- equalizer.classList.remove("playing");
-
- playButton.textContent="▶";
- playButton.classList.remove("playing-button");
+function esperarTransmision() {
+  status.textContent = "ESPERANDO TRANSMISIÓN";
+  equalizer.classList.remove("active");
+  button.textContent = "▶";
 }
 
+button.addEventListener("click", () => {
 
-/* INTENTO DE CONEXIÓN */
-
-function startConnection(){
-
- audioConfirmed=false;
-
- liveTitle.textContent="● RADIO APAGADA";
- liveTitle.className="live-title offline";
-
- status.innerHTML=
-  '<span class="status-dot"></span> Fuera de línea';
-
- status.className="status";
-
- song.textContent="Esperando transmisión...";
- artist.textContent="Studio25";
-
- equalizer.classList.remove("playing");
-
- /*
-  Si no llega audio real rápidamente,
-  cancelamos el intento y volvemos
-  al estado limpio de espera.
- */
-
- if(connectionTimer){
-  clearTimeout(connectionTimer);
- }
-
- connectionTimer=setTimeout(()=>{
-
-  if(!audioConfirmed){
-
-   radio.pause();
-   radio.removeAttribute("src");
-   radio.load();
-
-   /*
-    Volvemos a colocar la fuente original.
-   */
-
-   const source=document.querySelector("#radio source");
-
-   if(source){
-    source.src=
-     "https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3";
-   }
-
-   setOffline();
-
+  if (audio.paused) {
+    audio.play().catch(() => {
+      esperarTransmision();
+    });
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    esperarTransmision();
   }
 
- },5000);
-
-}
-
-
-/* AUDIO REALMENTE SONANDO */
-
-radio.addEventListener("playing",()=>{
-
- audioConfirmed=true;
-
- if(connectionTimer){
-  clearTimeout(connectionTimer);
-  connectionTimer=null;
- }
-
- liveTitle.textContent="● EN VIVO";
- liveTitle.className="live-title online";
-
- status.innerHTML=
-  '<span class="status-dot"></span> Señal en línea';
-
- status.className="status online";
-
- equalizer.classList.add("playing");
-
- playButton.textContent="❚❚";
- playButton.classList.add("playing-button");
-
- updateNowPlaying();
-
 });
 
-
-/* PAUSA */
-
-radio.addEventListener("pause",()=>{
-
- setOffline();
-
+audio.addEventListener("playing", () => {
+  status.textContent = "EN VIVO";
+  button.textContent = "❚❚";
+  equalizer.classList.add("active");
 });
 
-
-/* ERROR */
-
-radio.addEventListener("error",()=>{
-
- setOffline();
-
-});
-
-
-/* SI EL STREAM SE QUEDA COLGADO */
-
-radio.addEventListener("stalled",()=>{
-
- if(!audioConfirmed){
-
-  setOffline();
-
- }
-
-});
-
-
-/* BOTÓN PLAY */
-
-playButton.addEventListener("click",async()=>{
-
- if(radio.paused){
-
-  startConnection();
-
-  try{
-
-   await radio.play();
-
-  }catch(error){
-
-   setOffline();
-
+audio.addEventListener("pause", () => {
+  if (!audio.ended) {
+    esperarTransmision();
   }
-
- }else{
-
-  radio.pause();
-
- }
-
 });
 
-
-/* COMPARTIR */
-
-shareButton.addEventListener("click",async()=>{
-
- const data={
-  title:"Studio25 Radio",
-  text:"🎵 Escucha Studio25 Radio — música y entretención para ti.",
-  url:window.location.href
- };
-
- if(navigator.share){
-
-  try{
-   await navigator.share(data);
-  }catch(error){}
-
- }else{
-
-  try{
-
-   await navigator.clipboard.writeText(window.location.href);
-
-   shareButton.textContent="✅ Enlace copiado";
-
-   setTimeout(()=>{
-    shareButton.textContent="📤 Compartir radio";
-   },2000);
-
-  }catch(error){
-
-   alert("Copia este enlace para compartir Studio25");
-
-  }
-
- }
-
+audio.addEventListener("error", () => {
+  esperarTransmision();
 });
 
+audio.addEventListener("stalled", () => {
+  esperarTransmision();
+});
 
-/* METADATOS */
+audio.addEventListener("abort", () => {
+  esperarTransmision();
+});
 
-const metadataURL=
- "https://api.twj.es/?url="+
- encodeURIComponent(
-  "https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3"
- );
-
-
-async function updateNowPlaying(){
-
- if(!audioConfirmed || radio.paused){
-
-  song.textContent="Esperando transmisión...";
-  artist.textContent="Studio25";
-
-  return;
-
- }
-
- try{
-
-  const response=await fetch(
-   metadataURL+"&t="+Date.now(),
-   {cache:"no-store"}
-  );
-
-  if(!response.ok)return;
-
-  const data=await response.json();
-
-  const title=
-   data.songtitle||
-   data.song||
-   data.title||
-   "";
-
-  const currentArtist=
-   data.artist||
-   "";
-
-  if(title){
-   song.textContent=title;
+audio.addEventListener("waiting", () => {
+  /*
+    No mostramos "Cargando..." ni "Conectando...".
+    Mientras no haya audio real, queda esperando transmisión.
+  */
+  if (!audio.paused) {
+    status.textContent = "ESPERANDO TRANSMISIÓN";
+    equalizer.classList.remove("active");
   }
+});
 
-  if(currentArtist){
-   artist.textContent=currentArtist;
-  }
+audio.addEventListener("canplay", () => {
+  /*
+    No cambiamos el estado aquí.
+    Esperamos a que realmente empiece a sonar.
+  */
+});
 
- }catch(error){
-
-  console.log("Metadata no disponible");
-
- }
-
-}
-
-
-/* ESTADO INICIAL */
-
-setOffline();
-
-
-/* ACTUALIZACIÓN DE CANCIÓN */
-
-setInterval(updateNowPlaying,10000);
-
+esperarTransmision();
 </script>
 
 </body>
