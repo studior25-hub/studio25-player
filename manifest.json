@@ -1,0 +1,11 @@
+{
+  "name": "Radio Studio25",
+  "short_name": "Studio25",
+  "description": "Reproductor oficial de Radio Studio25",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050509",
+  "theme_color": "#050509",
+  "orientation": "portrait"
+}
