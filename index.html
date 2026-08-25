@@ -336,6 +336,24 @@ audio{display:none}
   padding:7px;
   font-size:14px;
  }
+ .install-button{
+  display:none;
+  width:100%;
+  margin-top:8px;
+  padding:9px 12px;
+  border:1px solid #2196ff;
+  border-radius:22px;
+  background:linear-gradient(90deg,#102b63,#3b155c);
+  color:white;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 10px rgba(33,150,255,.25);
+}
+
+.install-button:hover{
+  box-shadow:0 0 15px rgba(33,150,255,.45);
+
 }
 </style>
 </head>
@@ -429,7 +447,9 @@ audio{display:none}
 <button class="share-button" id="shareButton">
  📤 Compartir radio
 </button>
-
+<button class="install-button" id="installButton">
+📲 Instala nuestra app · Studio25
+</button>
 <div class="footer-info">
  <strong>🌎 Longaví</strong>
  <div class="footer-sub">Para el mundo</div>
@@ -460,7 +480,30 @@ const artist=document.getElementById("artist");
 const liveTitle=document.getElementById("liveTitle");
 const status=document.getElementById("status");
 const shareButton=document.getElementById("shareButton");
+const installButton=document.getElementById("installButton");
 
+let deferredPrompt=null;
+
+window.addEventListener("beforeinstallprompt",(e)=>{
+ e.preventDefault();
+ deferredPrompt=e;
+ installButton.style.display="block";
+});
+
+installButton.addEventListener("click",async()=>{
+
+ if(!deferredPrompt){
+  return;
+ }
+
+ deferredPrompt.prompt();
+
+ await deferredPrompt.userChoice;
+
+ deferredPrompt=null;
+ installButton.style.display="none";
+
+});
 let connectionTimer=null;
 let audioConfirmed=false;
 
