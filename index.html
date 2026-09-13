@@ -43,9 +43,25 @@ body{
 
 .description{text-align:center;font-size:18px;color:#e0e2e8;margin:7px 0}
 
+.logo-area{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:10px;
+ width:100%;
+ margin:0 auto 6px;
+}
+
+.flag{
+ font-size:34px;
+ line-height:1;
+ flex:0 0 auto;
+ filter:drop-shadow(0 0 6px rgba(255,255,255,.18));
+}
+
 .logo{
  width:100%;max-width:390px;max-height:300px;
- object-fit:contain;display:block;margin:0 auto 6px
+ object-fit:contain;display:block;
 }
 
 .now-playing-title{
@@ -146,7 +162,17 @@ audio{display:none}
 @media(max-width:450px){
  body{padding:5px}
  .player{padding:4px 10px;border-radius:18px}
+
+ .logo-area{
+  gap:6px;
+ }
+
+ .flag{
+  font-size:25px;
+ }
+
  .logo{max-width:280px;max-height:195px}
+
  .now-playing-title{font-size:18px;margin:2px 0 3px}
  .song{font-size:19px}
  .equalizer{height:24px;margin:20px auto 8px}
@@ -178,9 +204,15 @@ audio{display:none}
  Llevando música y entretención para ti
 </div>
 
-<img class="logo"
- src="file_000000001a74720e9d613f259602beca.png"
- alt="Studio25 Radio">
+<div class="logo-area">
+ <span class="flag">🇨🇱</span>
+
+ <img class="logo"
+  src="file_000000001a74720e9d613f259602beca.png"
+  alt="Studio25 Radio">
+
+ <span class="flag">🇨🇱</span>
+</div>
 
 <div class="now-playing-title">♪ SONANDO AHORA</div>
 
