@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,24 +45,18 @@ body{
 .description{text-align:center;font-size:18px;color:#e0e2e8;margin:7px 0}
 
 .logo-area{
- display:flex;
- align-items:center;
- justify-content:center;
- gap:10px;
- width:100%;
- margin:0 auto 6px;
+ display:flex;align-items:center;justify-content:center;
+ gap:10px;width:100%;margin:0 auto 6px
 }
 
 .flag{
- font-size:34px;
- line-height:1;
- flex:0 0 auto;
- filter:drop-shadow(0 0 6px rgba(255,255,255,.18));
+ font-size:34px;line-height:1;flex:0 0 auto;
+ filter:drop-shadow(0 0 6px rgba(255,255,255,.18))
 }
 
 .logo{
  width:100%;max-width:390px;max-height:300px;
- object-fit:contain;display:block;
+ object-fit:contain;display:block
 }
 
 .now-playing-title{
@@ -79,15 +74,22 @@ body{
  margin-top:4px;min-height:21px
 }
 
+/* ECUALIZADOR RETRO CLASICO BLANCO */
 .equalizer{
  height:48px;margin:6px auto;
  display:flex;justify-content:center;align-items:flex-end;gap:4px
 }
 
 .bar{
- width:6px;height:8px;border-radius:5px;
- background:linear-gradient(to top,#168cff,#8d4cff,#ff43d1);
- box-shadow:0 0 7px rgba(40,150,255,.6);
+ width:6px;height:8px;border-radius:1px;
+ background:repeating-linear-gradient(
+  to top,
+  #ffffff 0px,
+  #ffffff 3px,
+  #080b10 3px,
+  #080b10 6px
+ );
+ box-shadow:0 0 5px rgba(255,255,255,.35);
  animation:eq .8s ease-in-out infinite alternate;
  animation-play-state:paused
 }
@@ -138,8 +140,7 @@ body{
 }
 
 .install-button{
- display:none;
- background:linear-gradient(90deg,#102b63,#3b155c);
+ display:none;background:linear-gradient(90deg,#102b63,#3b155c);
  margin-bottom:8px
 }
 
@@ -162,17 +163,9 @@ audio{display:none}
 @media(max-width:450px){
  body{padding:5px}
  .player{padding:4px 10px;border-radius:18px}
-
- .logo-area{
-  gap:6px;
- }
-
- .flag{
-  font-size:25px;
- }
-
+ .logo-area{gap:6px}
+ .flag{font-size:25px}
  .logo{max-width:280px;max-height:195px}
-
  .now-playing-title{font-size:18px;margin:2px 0 3px}
  .song{font-size:19px}
  .equalizer{height:24px;margin:20px auto 8px}
@@ -206,20 +199,15 @@ audio{display:none}
 
 <div class="logo-area">
  <span class="flag">🇨🇱</span>
-
  <img class="logo"
   src="file_000000001a74720e9d613f259602beca.png"
   alt="Studio25 Radio">
-
  <span class="flag">🇨🇱</span>
 </div>
 
 <div class="now-playing-title">♪ SONANDO AHORA</div>
 
-<div class="song" id="song">
- Esperando transmisión...
-</div>
-
+<div class="song" id="song">Esperando transmisión...</div>
 <div class="artist" id="artist">Studio25</div>
 
 <div class="equalizer" id="equalizer">
@@ -265,7 +253,6 @@ audio{display:none}
 </div>
 
 <script>
-
 const radio=document.getElementById("radio");
 const play=document.getElementById("playButton");
 const eq=document.getElementById("equalizer");
@@ -278,7 +265,6 @@ const share=document.getElementById("shareButton");
 const install=document.getElementById("installButton");
 
 radio.volume=.85;
-
 vol.oninput=()=>radio.volume=vol.value;
 
 function offline(){
@@ -293,9 +279,7 @@ function offline(){
 
 play.onclick=async()=>{
  if(radio.paused){
-  try{
-   await radio.play();
-  }catch(e){offline()}
+  try{await radio.play()}catch(e){offline()}
  }else{
   radio.pause();
  }
@@ -332,7 +316,6 @@ share.onclick=async()=>{
 };
 
 /* INSTALACIÓN */
-
 let installPrompt=null;
 
 window.addEventListener("beforeinstallprompt",e=>{
@@ -343,15 +326,9 @@ window.addEventListener("beforeinstallprompt",e=>{
 
 install.onclick=async()=>{
  if(!installPrompt)return;
-
  installPrompt.prompt();
-
  const result=await installPrompt.userChoice;
-
- if(result.outcome==="accepted"){
-  install.style.display="none";
- }
-
+ if(result.outcome==="accepted")install.style.display="none";
  installPrompt=null;
 };
 
@@ -360,7 +337,6 @@ window.addEventListener("appinstalled",()=>{
 });
 
 /* CANCIÓN */
-
 const metadataURL=
 "https://api.twj.es/?url="+encodeURIComponent(
 "https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3"
@@ -373,31 +349,20 @@ function valido(t){
 }
 
 async function updateSong(){
-
  if(radio.paused)return;
-
  try{
-  const r=await fetch(metadataURL+"&t="+Date.now(),{
-   cache:"no-store"
-  });
-
+  const r=await fetch(metadataURL+"&t="+Date.now(),{cache:"no-store"});
   if(!r.ok)return;
-
   const d=await r.json();
-
   const title=d.songtitle||d.song||d.title||"";
   const art=d.artist||"";
-
   if(valido(title))song.textContent=title;
   if(valido(art))artist.textContent=art;
-
  }catch(e){}
 }
 
 setInterval(updateSong,10000);
-
 offline();
-
 </script>
 
 <script>
