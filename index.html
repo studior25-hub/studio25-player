@@ -133,14 +133,6 @@ body {
   margin-top: 8px;
 }
 
-/* DESCRIPCIÓN */
-.description {
-  text-align: center;
-  font-size: 18px;
-  color: #e0e2e8;
-  margin: 20px 0 7px;
-}
-
 /* LOGO CENTRAL */
 .logo-area {
   display: flex;
@@ -309,19 +301,6 @@ body {
   font-size: 15px;
 }
 
-.thanks {
-  margin-top: 8px;
-  padding: 8px 5px;
-  border: 1px solid #27334d;
-  border-radius: 18px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.thanks strong {
-  color: #2196ff;
-}
-
 audio { display: none; }
 
 /* AJUSTES PARA CELULARES */
@@ -368,11 +347,6 @@ audio { display: none; }
   .teleton-date {
     font-size: 14px;
     margin-top: 7px;
-  }
-
-  .description {
-    font-size: 16px;
-    margin: 20px 0 10px;
   }
 
   .logo-area { gap: 6px; }
@@ -431,13 +405,11 @@ audio { display: none; }
 <body>
 <div class="player">
 
-  <!-- EN VIVO A LA IZQUIERDA -->
-  <!-- SEÑAL Y TELETÓN A LA DERECHA -->
   <div class="top">
 
     <div class="station-info">
       <div class="live-title" id="liveTitle">🔴 EN VIVO</div>
-      <div class="station">Studio25 Radio online </div>
+      <div class="station">Studio25 Radio online</div>
     </div>
 
     <div class="right-info">
@@ -461,10 +433,6 @@ audio { display: none; }
     </div>
 
   </div>
-
-  
-    
-  
 
   <div class="logo-area">
     <span class="flag">🇨🇱</span>
@@ -512,9 +480,7 @@ audio { display: none; }
     <div class="footer-sub">Para el mundo</div>
   </div>
 
-  <div class="thanks">
-    ❤️ Gracias por preferir <strong>Studio25</strong>
-  </div>
+  <!-- Se quitó el mensaje del corazón -->
 
   <audio id="radio" preload="none">
     <source
@@ -538,6 +504,7 @@ const share = document.getElementById("shareButton");
 const install = document.getElementById("installButton");
 
 radio.volume = .85;
+
 vol.oninput = () => {
   radio.volume = Number(vol.value);
 };
