@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,9 +8,7 @@
 <link rel="manifest" href="./manifest.json">
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -47,13 +46,8 @@ body {
   font-weight: 800;
 }
 
-.live-title.offline {
-  color: #b8bec9;
-}
-
-.live-title.online {
-  color: #ff3030;
-}
+.live-title.offline { color: #b8bec9; }
+.live-title.online { color: #ff3030; }
 
 .station {
   font-size: 20px;
@@ -79,9 +73,7 @@ body {
   background: #777;
 }
 
-.status.online {
-  color: #d9dce4;
-}
+.status.online { color: #d9dce4; }
 
 .status.online .status-dot {
   background: #20e879;
@@ -183,26 +175,6 @@ body {
   font-weight: 700;
 }
 
-.equalizer {
-  height: 48px;
-  margin: 6px auto;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.bar {
-  width: 6px;
-  height: 8px;
-  border-radius: 5px;
-  background: linear-gradient(to top,#168cff,#8d4cff,#ff43d1);
-  box-shadow: 0 0 7px rgba(40,150,255,.6);
-  animation: equalize .8s ease-in-out infinite alternate;
-  animation-play-state: paused;
-}
-
-
 /* ECUALIZADOR RETRO CLÁSICO STUDIO25 */
 
 .equalizer {
@@ -260,6 +232,7 @@ body {
   50% {height: 40px}
   100% {height: 28px}
 }
+
 .play-button {
   width: 96px;
   height: 96px;
@@ -276,9 +249,7 @@ body {
   box-shadow: 0 0 18px rgba(33,150,255,.38);
 }
 
-.play-button:active {
-  transform: scale(.94);
-}
+.play-button:active { transform: scale(.94); }
 
 .playing-button {
   animation: pulse 1.8s infinite;
@@ -295,9 +266,7 @@ body {
   margin: 2px 20px 10px;
 }
 
-.volume-icon {
-  font-size: 21px;
-}
+.volume-icon { font-size: 21px; }
 
 .volume input {
   flex: 1;
@@ -331,32 +300,14 @@ body {
   line-height: 1.25;
 }
 
-.footer-info strong {
-  color: #fff;
-}
+.footer-info strong { color: #fff; }
 
 .footer-sub {
   color: #aeb5c4;
   font-size: 15px;
 }
 
-.thanks {
-  margin-top: 9px;
-  padding: 8px;
-  border: 1px solid #27334d;
-  border-radius: 18px;
-  text-align: center;
-  font-size: 15px;
-  color: #d8dce5;
-}
-
-.thanks strong {
-  color: #2196ff;
-}
-
-audio {
-  display: none;
-}
+audio { display: none; }
 
 @media(max-width:450px) {
   body {
@@ -415,9 +366,7 @@ audio {
     margin:3px auto 7px;
   }
 
-  .volume {
-    margin:1px 15px 7px;
-  }
+  .volume {margin:1px 15px 7px}
 
   .share-button {
     padding:10px;
@@ -431,12 +380,6 @@ audio {
   }
 
   .footer-sub {font-size:14px}
-
-  .thanks {
-    margin-top:7px;
-    padding:7px;
-    font-size:14px;
-  }
 }
 </style>
 </head>
@@ -553,7 +496,7 @@ audio {
   <div class="footer-info">
     <strong>🌎 Longaví</strong>
     <div class="footer-sub">Para el mundo</div>
-  
+  </div>
 
   <audio id="radio" preload="none">
     <source
@@ -582,7 +525,7 @@ let connectionTimer = null;
 let audioConfirmed = false;
 
 
-/* PROGRAMACIÓN ORIGINAL STUDIO25 */
+/* PROGRAMACIÓN STUDIO25 ACTUALIZADA */
 
 const schedule = [
   {
@@ -606,12 +549,12 @@ const schedule = [
     end: 14 * 60
   },
   {
-    name: "Generación Retro",
+    name: "Clásicos de Siempre",
     start: 14 * 60,
     end: 16 * 60
   },
   {
-    name: "Conexión Joven",
+    name: "Generación Retro",
     start: 16 * 60,
     end: 19 * 60
   },
