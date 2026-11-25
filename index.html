@@ -174,46 +174,35 @@ audio{display:none}
 </div>
 
 <script>
-const STREAM_URL = "https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3";
+const STREAM_URL="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3";
 
-const radio = document.getElementById("radio");
-const playButton = document.getElementById("playButton");
-const equalizer = document.getElementById("equalizer");
-const volume = document.getElementById("volume");
-const song = document.getElementById("song");
-const artist = document.getElementById("artist");
-const liveTitle = document.getElementById("liveTitle");
-const status = document.getElementById("status");
-const shareButton = document.getElementById("shareButton");
+const radio=document.getElementById("radio");
+const playButton=document.getElementById("playButton");
+const equalizer=document.getElementById("equalizer");
+const volume=document.getElementById("volume");
+const song=document.getElementById("song");
+const artist=document.getElementById("artist");
+const liveTitle=document.getElementById("liveTitle");
+const status=document.getElementById("status");
+const shareButton=document.getElementById("shareButton");
 
-let userWantsPlayback = false;
-let audioConfirmed = false;
-let reconnecting = false;
-let retryTimer = null;
-let waitingTimer = null;
-let watchdogTimer = null;
-let retryCount = 0;
-let lastProgressTime = Date.now();
-let lastAudioTime = 0;
-let stableTimer = null;
+let userWantsPlayback=false;
+let audioConfirmed=false;
+let reconnecting=false;
+let retryTimer=null;
+let waitingTimer=null;
+let watchdogTimer=null;
+let stableTimer=null;
+let retryCount=0;
+let lastProgressTime=Date.now();
+let lastAudioTime=0;
 
-const retryDelays = [3000,5000,10000,15000,30000];
-
-const schedule = [
- {name:"Despertar Mexicano",start:420,end:540},
- {name:"Arriba la Mañana",start:540,end:720},
- {name:"Raíces de Nuestra Tierra",start:720,end:780},
- {name:"Melodías del Recuerdo",start:780,end:840},
- {name:"Clásicos de Siempre",start:840,end:960},
- {name:"Generación Retro",start:960,end:1140},
- {name:"Entre Rancheras",start:1140,end:1260},
- {name:"Cuando faltan las palabras, una canción",start:1260,end:1380},
- {name:"Románticos de la noche",start:1380,end:1860}
-];
+const retryDelays=[3000,7000,12000,20000];
 
 function getChileMinutes(){
  const parts=new Intl.DateTimeFormat("es-CL",{
-  timeZone:"America/Santiago",hour:"2-digit",minute:"2-digit",hourCycle:"h23"
+  timeZone:"America/Santiago",
+  hour:"2-digit",minute:"2-digit",hourCycle:"h23"
  }).formatToParts(new Date());
  const h=Number(parts.find(p=>p.type==="hour").value);
  const m=Number(parts.find(p=>p.type==="minute").value);
@@ -225,6 +214,18 @@ function formatHour(minutes){
  return String(Math.floor(n/60)).padStart(2,"0")+":"+
  String(n%60).padStart(2,"0");
 }
+
+const schedule=[
+ {name:"Despertar Mexicano",start:420,end:540},
+ {name:"Arriba la Mañana",start:540,end:720},
+ {name:"Raíces de Nuestra Tierra",start:720,end:780},
+ {name:"Melodías del Recuerdo",start:780,end:840},
+ {name:"Clásicos de Siempre",start:840,end:960},
+ {name:"Generación Retro",start:960,end:1140},
+ {name:"Entre Rancheras",start:1140,end:1260},
+ {name:"Cuando faltan las palabras, una canción",start:1260,end:1380},
+ {name:"Románticos de la noche",start:1380,end:1860}
+];
 
 function updateSchedule(){
  const now=getChileMinutes();
@@ -272,10 +273,11 @@ function scheduleReconnect(reason){
  equalizer.classList.remove("playing");
  playButton.textContent="▶";
  playButton.classList.remove("playing-button");
- setStatus("Reconectando señal...",false);
+ setStatus("Recuperando señal...",false);
 
  const delay=retryDelays[Math.min(retryCount,retryDelays.length-1)];
  retryCount++;
+
  retryTimer=setTimeout(()=>{
   retryTimer=null;
   reconnectAudio();
@@ -294,9 +296,9 @@ async function reconnectAudio(){
   radio.removeAttribute("src");
   radio.load();
 
-  await new Promise(resolve=>setTimeout(resolve,500));
+  await new Promise(resolve=>setTimeout(resolve,800));
 
-  radio.src=STREAM_URL+"?reconnect="+Date.now();
+  radio.src=STREAM_URL;
   radio.load();
 
   const result=radio.play();
@@ -304,7 +306,7 @@ async function reconnectAudio(){
 
  }catch(error){
   reconnecting=false;
-  showOffline("Intentando recuperar señal");
+  showOffline("No se pudo conectar");
   scheduleReconnect("fallo de reproducción");
   return;
  }
@@ -312,14 +314,46 @@ async function reconnectAudio(){
  setTimeout(()=>{
   if(!audioConfirmed&&userWantsPlayback){
    reconnecting=false;
-   scheduleReconnect("sin señal de audio");
+   scheduleReconnect("sin audio");
   }
- },12000);
+ },15000);
+}
+
+function hardReloadRecovery(){
+ if(!userWantsPlayback)return;
+
+ const now=Date.now();
+ let attempts=[];
+
+ try{
+  attempts=JSON.parse(sessionStorage.getItem("studio25_reloads")||"[]");
+ }catch(e){attempts=[]}
+
+ attempts=attempts.filter(t=>now-t<600000);
+
+ if(attempts.length>=3){
+  sessionStorage.removeItem("studio25_resume");
+  sessionStorage.removeItem("studio25_reloads");
+  userWantsPlayback=false;
+  showOffline("Toca Play para volver a escuchar");
+  return;
+ }
+
+ attempts.push(now);
+ sessionStorage.setItem("studio25_reloads",JSON.stringify(attempts));
+ sessionStorage.setItem("studio25_resume","1");
+ setStatus("Reiniciando reproductor...",false);
+
+ setTimeout(()=>{
+  window.location.reload();
+ },1200);
 }
 
 function startPlayback(){
  userWantsPlayback=true;
+ sessionStorage.setItem("studio25_resume","1");
  clearTimers();
+ retryCount=0;
  showOffline("Conectando...");
  reconnectAudio();
 }
@@ -329,6 +363,8 @@ function stopPlayback(){
  reconnecting=false;
  clearTimers();
  radio.pause();
+ sessionStorage.removeItem("studio25_resume");
+ sessionStorage.removeItem("studio25_reloads");
  showOffline();
 }
 
@@ -350,18 +386,20 @@ radio.addEventListener("playing",()=>{
  playButton.textContent="❚❚";
  playButton.classList.add("playing-button");
 
- song.textContent="Esperando transmisión...";
- artist.textContent="Studio25";
  updateNowPlaying();
 
  clearTimeout(stableTimer);
  stableTimer=setTimeout(()=>{
-  if(audioConfirmed&&userWantsPlayback)retryCount=0;
- },15000);
+  if(audioConfirmed&&userWantsPlayback){
+   retryCount=0;
+   sessionStorage.removeItem("studio25_reloads");
+  }
+ },30000);
 });
 
 radio.addEventListener("timeupdate",()=>{
  if(!userWantsPlayback)return;
+
  if(radio.currentTime>lastAudioTime+0.1){
   lastAudioTime=radio.currentTime;
   lastProgressTime=Date.now();
@@ -391,7 +429,7 @@ radio.addEventListener("error",()=>{
 });
 
 radio.addEventListener("ended",()=>{
- if(userWantsPlayback)scheduleReconnect("fin inesperado del audio");
+ if(userWantsPlayback)scheduleReconnect("fin inesperado");
 });
 
 radio.addEventListener("pause",()=>{
@@ -405,9 +443,8 @@ watchdogTimer=setInterval(()=>{
  if(!userWantsPlayback||document.hidden||!audioConfirmed)return;
 
  const now=Date.now();
- const moved=radio.currentTime>lastAudioTime+0.1;
 
- if(moved){
+ if(radio.currentTime>lastAudioTime+0.1){
   lastAudioTime=radio.currentTime;
   lastProgressTime=now;
   return;
@@ -415,7 +452,8 @@ watchdogTimer=setInterval(()=>{
 
  if(now-lastProgressTime>35000){
   audioConfirmed=false;
-  scheduleReconnect("audio congelado");
+  showOffline("Audio detenido");
+  hardReloadRecovery();
  }
 },5000);
 
@@ -453,24 +491,26 @@ shareButton.addEventListener("click",async()=>{
 function textoValido(texto){
  if(!texto)return false;
  const limpio=texto.trim().toLowerCase();
- return !["carregando...","carregando…","carregando",
- "cargando...","cargando…","cargando","loading...","loading…","loading"].includes(limpio);
+ return !["carregando...","carregando…","cargando...","cargando…","loading...","loading…"].includes(limpio);
 }
 
 const metadataURL="https://api.twj.es/?url="+encodeURIComponent(STREAM_URL);
 
 async function updateNowPlaying(){
  if(!audioConfirmed||radio.paused)return;
+
  try{
   const response=await fetch(metadataURL+"&t="+Date.now(),{cache:"no-store"});
   if(!response.ok)return;
+
   const data=await response.json();
   const title=data.songtitle||data.song||data.title||"";
   const currentArtist=data.artist||"";
+
   if(textoValido(title))song.textContent=title;
   if(textoValido(currentArtist))artist.textContent=currentArtist;
  }catch(error){
-  console.log("Metadata no disponible");
+  console.log("Información de canción no disponible");
  }
 }
 
@@ -485,6 +525,15 @@ if("serviceWorker"in navigator){
    console.log("Service Worker no disponible",error);
   });
  });
+}
+
+/* Recuperar la reproducción después de una recarga automática */
+if(sessionStorage.getItem("studio25_resume")==="1"){
+ userWantsPlayback=true;
+ showOffline("Restableciendo transmisión...");
+ setTimeout(()=>{
+  if(userWantsPlayback)reconnectAudio();
+ },1200);
 }
 </script>
 </body>
