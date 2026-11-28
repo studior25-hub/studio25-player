@@ -14,8 +14,7 @@ body{
  margin:0;min-height:100vh;padding:8px;display:flex;
  justify-content:center;align-items:center;
  font-family:Arial,Helvetica,sans-serif;color:#fff;
- background:radial-gradient(circle at 15% 20%,#18295c 0,transparent 35%),
- radial-gradient(circle at 85% 80%,#40144d 0,transparent 35%),#030711
+ background:radial-gradient(circle at 15% 20%,#18295c 0,transparent 35%),radial-gradient(circle at 85% 80%,#40144d 0,transparent 35%),#030711
 }
 .player{
  width:min(620px,100%);padding:18px 20px;border-radius:24px;
@@ -34,12 +33,9 @@ body{
 .description{text-align:center;font-size:18px;color:#e0e2e8;margin-bottom:7px}
 .logo{width:100%;max-width:390px;max-height:300px;object-fit:contain;display:block;margin:0 auto 6px}
 .now-playing-title{text-align:center;color:#2196ff;font-size:24px;font-weight:800;margin:4px 0 7px}
-.song{text-align:center;font-size:25px;line-height:1.15;font-weight:400;min-height:29px}
+.song{text-align:center;font-size:25px;line-height:1.15;min-height:29px}
 .artist{text-align:center;font-size:18px;color:#42a5ff;margin-top:4px;min-height:21px}
-.program-box{
- margin:14px 0 10px;padding:13px;border:1px solid #273e68;
- border-radius:16px;background:linear-gradient(135deg,rgba(18,48,100,.35),rgba(70,20,100,.25))
-}
+.program-box{margin:14px 0 10px;padding:13px;border:1px solid #273e68;border-radius:16px;background:linear-gradient(135deg,rgba(18,48,100,.35),rgba(70,20,100,.25))}
 .program-heading{text-align:center;color:#2196ff;font-size:15px;font-weight:800;letter-spacing:1px;margin-bottom:10px}
 .program-now{text-align:center;font-size:20px;font-weight:700;margin-bottom:5px}
 .program-time{text-align:center;color:#aebbd2;font-size:14px;margin-bottom:12px}
@@ -47,57 +43,25 @@ body{
 .program-next-label{color:#aeb5c4;font-size:13px;margin-bottom:4px}
 .program-next-name{color:#42a5ff;font-size:16px;font-weight:700}
 .equalizer{height:48px;margin:6px auto;display:flex;justify-content:center;align-items:flex-end;gap:4px}
-.bar{
- width:7px;height:8px;border-radius:2px;
- background:repeating-linear-gradient(to top,#fff 0px,#fff 3px,transparent 3px,transparent 6px);
- box-shadow:0 0 4px rgba(255,255,255,.35);
- animation:equalize .8s ease-in-out infinite alternate;animation-play-state:paused
-}
+.bar{width:7px;height:8px;border-radius:2px;background:repeating-linear-gradient(to top,#fff 0px,#fff 3px,transparent 3px,transparent 6px);box-shadow:0 0 4px rgba(255,255,255,.35);animation:equalize .8s ease-in-out infinite alternate;animation-play-state:paused}
 .equalizer.playing .bar{animation-play-state:running}
-.bar:nth-child(2){animation-delay:.10s}
-.bar:nth-child(3){animation-delay:.25s}
-.bar:nth-child(4){animation-delay:.40s}
-.bar:nth-child(5){animation-delay:.15s}
-.bar:nth-child(6){animation-delay:.35s}
-.bar:nth-child(7){animation-delay:.05s}
-.bar:nth-child(8){animation-delay:.30s}
-.bar:nth-child(9){animation-delay:.20s}
-.bar:nth-child(10){animation-delay:.45s}
-.bar:nth-child(11){animation-delay:.10s}
-.bar:nth-child(12){animation-delay:.30s}
-.bar:nth-child(13){animation-delay:.15s}
-.bar:nth-child(14){animation-delay:.40s}
-.bar:nth-child(15){animation-delay:.20s}
-.bar:nth-child(16){animation-delay:.35s}
-.bar:nth-child(17){animation-delay:.05s}
-.bar:nth-child(18){animation-delay:.25s}
-.bar:nth-child(19){animation-delay:.10s}
-.bar:nth-child(20){animation-delay:.40s}
-.bar:nth-child(21){animation-delay:.20s}
+.bar:nth-child(2n){animation-delay:.15s}
+.bar:nth-child(3n){animation-delay:.3s}
 @keyframes equalize{0%{height:8px}50%{height:40px}100%{height:28px}}
-.play-button{
- width:96px;height:96px;display:flex;justify-content:center;align-items:center;
- margin:4px auto 9px;border-radius:50%;border:2px solid #2196ff;
- background:#07101e;color:white;font-size:40px;cursor:pointer;
- box-shadow:0 0 18px rgba(33,150,255,.38)
-}
+.play-button{width:96px;height:96px;display:flex;justify-content:center;align-items:center;margin:4px auto 9px;border-radius:50%;border:2px solid #2196ff;background:#07101e;color:white;font-size:40px;cursor:pointer;box-shadow:0 0 18px rgba(33,150,255,.38)}
 .play-button:active{transform:scale(.94)}
 .playing-button{animation:pulse 1.8s infinite}
 @keyframes pulse{50%{box-shadow:0 0 32px rgba(37,99,235,.75)}}
 .volume{display:flex;align-items:center;gap:9px;margin:2px 20px 10px}
 .volume-icon{font-size:21px}
 .volume input{flex:1;height:18px;accent-color:#2196ff}
-.share-button{
- width:100%;padding:11px;border-radius:24px;border:1px solid #2196ff;
- background:linear-gradient(90deg,rgba(20,65,150,.45),rgba(100,20,100,.45));
- color:white;font-size:17px;font-weight:700;cursor:pointer;margin-bottom:10px
-}
+.share-button{width:100%;padding:11px;border-radius:24px;border:1px solid #2196ff;background:linear-gradient(90deg,rgba(20,65,150,.45),rgba(100,20,100,.45));color:white;font-size:17px;font-weight:700;cursor:pointer;margin-bottom:10px}
 .footer-info{border-top:1px solid #27334d;padding-top:9px;text-align:center;color:#cbd0dc;font-size:17px;line-height:1.25}
 .footer-info strong{color:#fff}
 .footer-sub{color:#aeb5c4;font-size:15px}
 audio{display:none}
 @media(max-width:450px){
- body{padding:5px;align-items:center}
+ body{padding:5px}
  .player{padding:13px 14px 14px;border-radius:20px}
  .live-title{font-size:21px}.station{font-size:17px}
  .status{font-size:12px;padding:6px 9px}
@@ -120,60 +84,62 @@ audio{display:none}
 <body>
 <div class="player">
 
- <div class="top">
-  <div>
-   <div class="live-title offline" id="liveTitle">● RADIO APAGADA</div>
-   <div class="station">Studio25</div>
-  </div>
-  <div class="status" id="status"><span class="status-dot"></span> Fuera de línea</div>
+<div class="top">
+ <div>
+  <div class="live-title offline" id="liveTitle">● RADIO APAGADA</div>
+  <div class="station">Studio25</div>
  </div>
+ <div class="status" id="status"><span class="status-dot"></span> Fuera de línea</div>
+</div>
 
- <div class="description">Llevando música y entretención para ti</div>
+<div class="description">Llevando música y entretención para ti</div>
 
- <img class="logo" src="file_000000001a74720e9d613f259602beca.png" alt="Studio25 Radio">
+<img class="logo" src="file_000000001a74720e9d613f259602beca.png" alt="Studio25 Radio">
 
- <div class="now-playing-title">♪ SONANDO AHORA</div>
- <div class="song" id="song">Esperando transmisión...</div>
- <div class="artist" id="artist">Studio25</div>
+<div class="now-playing-title">♪ SONANDO AHORA</div>
+<div class="song" id="song">Esperando transmisión...</div>
+<div class="artist" id="artist">Studio25</div>
 
- <div class="program-box">
-  <div class="program-heading">📻 PROGRAMACIÓN STUDIO25</div>
-  <div class="program-now" id="programNow">Cargando programación...</div>
-  <div class="program-time" id="programTime"></div>
-  <div class="program-next">
-   <div class="program-next-label">A CONTINUACIÓN</div>
-   <div class="program-next-name" id="programNext">--</div>
-  </div>
+<div class="program-box">
+ <div class="program-heading">📻 PROGRAMACIÓN STUDIO25</div>
+ <div class="program-now" id="programNow">Cargando programación...</div>
+ <div class="program-time" id="programTime"></div>
+ <div class="program-next">
+  <div class="program-next-label">A CONTINUACIÓN</div>
+  <div class="program-next-name" id="programNext">--</div>
  </div>
+</div>
 
- <div class="equalizer" id="equalizer">
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
- </div>
+<div class="equalizer" id="equalizer">
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+ <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+</div>
 
- <button class="play-button" id="playButton">▶</button>
+<button class="play-button" id="playButton">▶</button>
 
- <div class="volume">
-  <div class="volume-icon">🔊</div>
-  <input id="volume" type="range" min="0" max="1" step="0.01" value="0.85">
- </div>
+<div class="volume">
+ <div class="volume-icon">🔊</div>
+ <input id="volume" type="range" min="0" max="1" step="0.01" value="0.85">
+</div>
 
- <button class="share-button" id="shareButton">📤 Compartir radio</button>
+<button class="share-button" id="shareButton">📤 Compartir radio</button>
 
- <div class="footer-info">
-  <strong>🌎 Longaví</strong>
-  <div class="footer-sub">Para el mundo</div>
- </div>
+<div class="footer-info">
+ <strong>🌎 Longaví</strong>
+ <div class="footer-sub">Para el mundo</div>
+</div>
 
- <audio id="radio" preload="none"></audio>
+<audio id="radio" preload="none" playsinline></audio>
 </div>
 
 <script>
+"use strict";
+
 const STREAM_URL="https://studio25-radio-online-13fbee.stream.aloncast.com/studio25-radio-online-13fbee.mp3";
 
 const radio=document.getElementById("radio");
@@ -187,23 +153,268 @@ const status=document.getElementById("status");
 const shareButton=document.getElementById("shareButton");
 
 let userWantsPlayback=false;
-let audioConfirmed=false;
-let reconnecting=false;
+let connecting=false;
+let confirmed=false;
 let retryTimer=null;
-let waitingTimer=null;
 let watchdogTimer=null;
-let stableTimer=null;
+let waitingTimer=null;
+let attemptTimer=null;
 let retryCount=0;
-let lastProgressTime=Date.now();
-let lastAudioTime=0;
+let generation=0;
+let lastProgress=Date.now();
+let lastTime=0;
 
-const retryDelays=[3000,7000,12000,20000];
+const delays=[3000,6000,10000,15000,20000,30000];
+
+radio.volume=0.85;
+
+function setStatus(message,online=false){
+ liveTitle.textContent=online?"● EN VIVO":"● RADIO APAGADA";
+ liveTitle.className=online?"live-title online":"live-title offline";
+ status.innerHTML='<span class="status-dot"></span> '+message;
+ status.className=online?"status online":"status";
+}
+
+function showOffline(message){
+ confirmed=false;
+ equalizer.classList.remove("playing");
+ playButton.textContent="▶";
+ playButton.classList.remove("playing-button");
+ setStatus(message,false);
+}
+
+function clearTimers(){
+ clearTimeout(retryTimer);
+ clearTimeout(waitingTimer);
+ clearTimeout(attemptTimer);
+ clearInterval(watchdogTimer);
+ retryTimer=null;
+ waitingTimer=null;
+ attemptTimer=null;
+ watchdogTimer=null;
+}
+
+function stopRadio(){
+ userWantsPlayback=false;
+ connecting=false;
+ generation++;
+ clearTimers();
+
+ radio.pause();
+ radio.removeAttribute("src");
+ radio.load();
+
+ showOffline("Fuera de línea");
+}
+
+function reconnect(){
+ if(!userWantsPlayback||connecting||retryTimer)return;
+
+ connecting=true;
+ confirmed=false;
+ generation++;
+
+ const myGeneration=generation;
+
+ clearTimeout(waitingTimer);
+ clearTimeout(attemptTimer);
+
+ showOffline("Conectando...");
+
+ // Una única conexión nueva, sin recargar la página.
+ radio.pause();
+ radio.removeAttribute("src");
+ radio.load();
+
+ retryTimer=setTimeout(async()=>{
+  retryTimer=null;
+
+  if(!userWantsPlayback||myGeneration!==generation){
+   connecting=false;
+   return;
+  }
+
+  try{
+   radio.src=STREAM_URL;
+   radio.load();
+
+   attemptTimer=setTimeout(()=>{
+    if(myGeneration===generation&&userWantsPlayback&&!confirmed){
+     connecting=false;
+     scheduleRetry();
+    }
+   },25000);
+
+   await radio.play();
+
+  }catch(error){
+   if(myGeneration===generation&&userWantsPlayback){
+    connecting=false;
+    scheduleRetry();
+   }
+  }
+ },800);
+}
+
+function scheduleRetry(){
+ if(!userWantsPlayback||retryTimer)return;
+
+ connecting=false;
+ confirmed=false;
+
+ clearTimeout(waitingTimer);
+ clearTimeout(attemptTimer);
+
+ showOffline("Recuperando señal...");
+
+ const delay=delays[Math.min(retryCount,delays.length-1)];
+ retryCount++;
+
+ retryTimer=setTimeout(()=>{
+  retryTimer=null;
+  reconnect();
+ },delay);
+}
+
+function startRadio(){
+ if(userWantsPlayback)return;
+
+ userWantsPlayback=true;
+ retryCount=0;
+ reconnect();
+}
+
+playButton.addEventListener("click",()=>{
+ if(userWantsPlayback)stopRadio();
+ else startRadio();
+});
+
+radio.addEventListener("playing",()=>{
+ if(!userWantsPlayback)return;
+
+ connecting=false;
+ confirmed=true;
+ retryCount=0;
+
+ clearTimeout(attemptTimer);
+ clearTimeout(waitingTimer);
+
+ lastProgress=Date.now();
+ lastTime=radio.currentTime;
+
+ setStatus("Señal en línea",true);
+ equalizer.classList.add("playing");
+ playButton.textContent="❚❚";
+ playButton.classList.add("playing-button");
+
+ updateNowPlaying();
+
+ // Vigila la reproducción mientras la página está visible.
+ clearInterval(watchdogTimer);
+ watchdogTimer=setInterval(()=>{
+  if(!userWantsPlayback||!confirmed||document.hidden)return;
+
+  if(radio.paused){
+   scheduleRetry();
+   return;
+  }
+
+  if(radio.currentTime>lastTime+0.05){
+   lastTime=radio.currentTime;
+   lastProgress=Date.now();
+  }else if(Date.now()-lastProgress>35000){
+   scheduleRetry();
+  }
+ },5000);
+});
+
+radio.addEventListener("timeupdate",()=>{
+ if(!userWantsPlayback||!confirmed)return;
+
+ if(radio.currentTime>lastTime+0.05){
+  lastTime=radio.currentTime;
+  lastProgress=Date.now();
+ }
+});
+
+radio.addEventListener("waiting",()=>{
+ if(!userWantsPlayback||!confirmed)return;
+
+ clearTimeout(waitingTimer);
+
+ waitingTimer=setTimeout(()=>{
+  if(userWantsPlayback&&confirmed&&radio.readyState<3){
+   scheduleRetry();
+  }
+ },15000);
+});
+
+radio.addEventListener("stalled",()=>{
+ if(!userWantsPlayback)return;
+
+ clearTimeout(waitingTimer);
+
+ waitingTimer=setTimeout(()=>{
+  if(userWantsPlayback){
+   scheduleRetry();
+  }
+ },15000);
+});
+
+radio.addEventListener("error",()=>{
+ if(userWantsPlayback)scheduleRetry();
+});
+
+radio.addEventListener("ended",()=>{
+ if(userWantsPlayback)scheduleRetry();
+});
+
+radio.addEventListener("pause",()=>{
+ if(userWantsPlayback&&!connecting&&!radio.ended){
+  scheduleRetry();
+ }
+});
+
+document.addEventListener("visibilitychange",()=>{
+ if(!document.hidden&&userWantsPlayback){
+  if(radio.paused||!confirmed){
+   scheduleRetry();
+  }else{
+   lastProgress=Date.now();
+   lastTime=radio.currentTime;
+  }
+});
+
+volume.addEventListener("input",()=>{
+ radio.volume=Number(volume.value);
+});
+
+shareButton.addEventListener("click",async()=>{
+ const data={
+  title:"Studio25 Radio",
+  text:"🎵 Escucha Studio25 Radio — música y entretención para ti.",
+  url:window.location.href
+ };
+
+ if(navigator.share){
+  try{await navigator.share(data)}catch(e){}
+ }else{
+  try{
+   await navigator.clipboard.writeText(window.location.href);
+   shareButton.textContent="✅ Enlace copiado";
+   setTimeout(()=>shareButton.textContent="📤 Compartir radio",2000);
+  }catch(e){
+   alert("Copia este enlace: "+window.location.href);
+  }
+ }
+});
 
 function getChileMinutes(){
  const parts=new Intl.DateTimeFormat("es-CL",{
   timeZone:"America/Santiago",
   hour:"2-digit",minute:"2-digit",hourCycle:"h23"
  }).formatToParts(new Date());
+
  const h=Number(parts.find(p=>p.type==="hour").value);
  const m=Number(parts.find(p=>p.type==="minute").value);
  return h*60+m;
@@ -229,312 +440,63 @@ const schedule=[
 
 function updateSchedule(){
  const now=getChileMinutes();
+
  let index=schedule.findIndex(p=>{
   if(p.end>1440)return now>=p.start||now<p.end-1440;
   return now>=p.start&&now<p.end;
  });
+
  if(index<0)index=0;
+
  const current=schedule[index];
  const next=schedule[(index+1)%schedule.length];
+
  document.getElementById("programNow").textContent=current.name;
  document.getElementById("programTime").textContent=
   formatHour(current.start)+" – "+formatHour(current.end);
  document.getElementById("programNext").textContent=next.name;
 }
 
-function setStatus(message,online=false){
- liveTitle.textContent=online?"● EN VIVO":"● RADIO APAGADA";
- liveTitle.className=online?"live-title online":"live-title offline";
- status.innerHTML='<span class="status-dot"></span> '+message;
- status.className=online?"status online":"status";
-}
-
-function showOffline(message="Fuera de línea"){
- audioConfirmed=false;
- equalizer.classList.remove("playing");
- playButton.textContent="▶";
- playButton.classList.remove("playing-button");
- setStatus(message,false);
-}
-
-function clearTimers(){
- clearTimeout(retryTimer);
- clearTimeout(waitingTimer);
- clearTimeout(stableTimer);
- retryTimer=null;
- waitingTimer=null;
- stableTimer=null;
-}
-
-function scheduleReconnect(reason){
- if(!userWantsPlayback||reconnecting||retryTimer)return;
-
- audioConfirmed=false;
- equalizer.classList.remove("playing");
- playButton.textContent="▶";
- playButton.classList.remove("playing-button");
- setStatus("Recuperando señal...",false);
-
- const delay=retryDelays[Math.min(retryCount,retryDelays.length-1)];
- retryCount++;
-
- retryTimer=setTimeout(()=>{
-  retryTimer=null;
-  reconnectAudio();
- },delay);
-}
-
-async function reconnectAudio(){
- if(!userWantsPlayback||reconnecting)return;
-
- reconnecting=true;
- audioConfirmed=false;
- clearTimeout(waitingTimer);
-
- try{
-  radio.pause();
-  radio.removeAttribute("src");
-  radio.load();
-
-  await new Promise(resolve=>setTimeout(resolve,800));
-
-  radio.src=STREAM_URL;
-  radio.load();
-
-  const result=radio.play();
-  if(result&&typeof result.then==="function")await result;
-
- }catch(error){
-  reconnecting=false;
-  showOffline("No se pudo conectar");
-  scheduleReconnect("fallo de reproducción");
-  return;
- }
-
- setTimeout(()=>{
-  if(!audioConfirmed&&userWantsPlayback){
-   reconnecting=false;
-   scheduleReconnect("sin audio");
-  }
- },15000);
-}
-
-function hardReloadRecovery(){
- if(!userWantsPlayback)return;
-
- const now=Date.now();
- let attempts=[];
-
- try{
-  attempts=JSON.parse(sessionStorage.getItem("studio25_reloads")||"[]");
- }catch(e){attempts=[]}
-
- attempts=attempts.filter(t=>now-t<600000);
-
- if(attempts.length>=3){
-  sessionStorage.removeItem("studio25_resume");
-  sessionStorage.removeItem("studio25_reloads");
-  userWantsPlayback=false;
-  showOffline("Toca Play para volver a escuchar");
-  return;
- }
-
- attempts.push(now);
- sessionStorage.setItem("studio25_reloads",JSON.stringify(attempts));
- sessionStorage.setItem("studio25_resume","1");
- setStatus("Reiniciando reproductor...",false);
-
- setTimeout(()=>{
-  window.location.reload();
- },1200);
-}
-
-function startPlayback(){
- userWantsPlayback=true;
- sessionStorage.setItem("studio25_resume","1");
- clearTimers();
- retryCount=0;
- showOffline("Conectando...");
- reconnectAudio();
-}
-
-function stopPlayback(){
- userWantsPlayback=false;
- reconnecting=false;
- clearTimers();
- radio.pause();
- sessionStorage.removeItem("studio25_resume");
- sessionStorage.removeItem("studio25_reloads");
- showOffline();
-}
-
-playButton.addEventListener("click",()=>{
- if(userWantsPlayback)stopPlayback();
- else startPlayback();
-});
-
-radio.addEventListener("playing",()=>{
- if(!userWantsPlayback)return;
-
- reconnecting=false;
- audioConfirmed=true;
- lastProgressTime=Date.now();
- lastAudioTime=radio.currentTime;
-
- setStatus("Señal en línea",true);
- equalizer.classList.add("playing");
- playButton.textContent="❚❚";
- playButton.classList.add("playing-button");
-
- updateNowPlaying();
-
- clearTimeout(stableTimer);
- stableTimer=setTimeout(()=>{
-  if(audioConfirmed&&userWantsPlayback){
-   retryCount=0;
-   sessionStorage.removeItem("studio25_reloads");
-  }
- },30000);
-});
-
-radio.addEventListener("timeupdate",()=>{
- if(!userWantsPlayback)return;
-
- if(radio.currentTime>lastAudioTime+0.1){
-  lastAudioTime=radio.currentTime;
-  lastProgressTime=Date.now();
- }
-});
-
-radio.addEventListener("waiting",()=>{
- if(!userWantsPlayback)return;
- clearTimeout(waitingTimer);
- waitingTimer=setTimeout(()=>{
-  if(userWantsPlayback&&radio.readyState<3){
-   scheduleReconnect("espera prolongada");
-  }
- },12000);
-});
-
-radio.addEventListener("stalled",()=>{
- if(!userWantsPlayback)return;
- clearTimeout(waitingTimer);
- waitingTimer=setTimeout(()=>{
-  if(userWantsPlayback)scheduleReconnect("transmisión detenida");
- },12000);
-});
-
-radio.addEventListener("error",()=>{
- if(userWantsPlayback)scheduleReconnect("error de audio");
-});
-
-radio.addEventListener("ended",()=>{
- if(userWantsPlayback)scheduleReconnect("fin inesperado");
-});
-
-radio.addEventListener("pause",()=>{
- if(userWantsPlayback&&!reconnecting){
-  showOffline("Señal interrumpida");
-  scheduleReconnect("pausa inesperada");
- }
-});
-
-watchdogTimer=setInterval(()=>{
- if(!userWantsPlayback||document.hidden||!audioConfirmed)return;
-
- const now=Date.now();
-
- if(radio.currentTime>lastAudioTime+0.1){
-  lastAudioTime=radio.currentTime;
-  lastProgressTime=now;
-  return;
- }
-
- if(now-lastProgressTime>35000){
-  audioConfirmed=false;
-  showOffline("Audio detenido");
-  hardReloadRecovery();
- }
-},5000);
-
-document.addEventListener("visibilitychange",()=>{
- if(!document.hidden&&userWantsPlayback){
-  lastProgressTime=Date.now();
-  lastAudioTime=radio.currentTime;
-  if(!audioConfirmed)scheduleReconnect("regreso a la página");
- }
-});
-
-radio.volume=0.85;
-volume.addEventListener("input",()=>radio.volume=Number(volume.value));
-
-shareButton.addEventListener("click",async()=>{
- const data={
-  title:"Studio25 Radio",
-  text:"🎵 Escucha Studio25 Radio — música y entretención para ti.",
-  url:window.location.href
- };
-
- if(navigator.share){
-  try{await navigator.share(data)}catch(error){}
- }else{
-  try{
-   await navigator.clipboard.writeText(window.location.href);
-   shareButton.textContent="✅ Enlace copiado";
-   setTimeout(()=>shareButton.textContent="📤 Compartir radio",2000);
-  }catch(error){
-   alert("Copia este enlace para compartir Studio25: "+window.location.href);
-  }
- }
-});
-
 function textoValido(texto){
  if(!texto)return false;
  const limpio=texto.trim().toLowerCase();
- return !["carregando...","carregando…","cargando...","cargando…","loading...","loading…"].includes(limpio);
+ return !["carregando...","cargando...","loading..."].includes(limpio);
 }
 
 const metadataURL="https://api.twj.es/?url="+encodeURIComponent(STREAM_URL);
 
 async function updateNowPlaying(){
- if(!audioConfirmed||radio.paused)return;
+ if(!confirmed||radio.paused)return;
 
  try{
-  const response=await fetch(metadataURL+"&t="+Date.now(),{cache:"no-store"});
+  const response=await fetch(metadataURL+"&t="+Date.now(),{
+   cache:"no-store"
+  });
+
   if(!response.ok)return;
 
   const data=await response.json();
+
   const title=data.songtitle||data.song||data.title||"";
   const currentArtist=data.artist||"";
 
   if(textoValido(title))song.textContent=title;
   if(textoValido(currentArtist))artist.textContent=currentArtist;
+
  }catch(error){
-  console.log("Información de canción no disponible");
+  // La metadata no afecta la reproducción de audio.
  }
 }
 
-showOffline();
-updateSchedule();
 setInterval(updateSchedule,30000);
-setInterval(updateNowPlaying,10000);
+setInterval(updateNowPlaying,15000);
 
-if("serviceWorker"in navigator){
- window.addEventListener("load",()=>{
-  navigator.serviceWorker.register("./sw.js").catch(error=>{
-   console.log("Service Worker no disponible",error);
-  });
- });
-}
+updateSchedule();
+showOffline("Fuera de línea");
 
-/* Recuperar la reproducción después de una recarga automática */
-if(sessionStorage.getItem("studio25_resume")==="1"){
- userWantsPlayback=true;
- showOffline("Restableciendo transmisión...");
- setTimeout(()=>{
-  if(userWantsPlayback)reconnectAudio();
- },1200);
-}
+// No se inicia automáticamente: el oyente debe pulsar Play.
+// Esto respeta las restricciones de reproducción automática
+// de los navegadores.
 </script>
 </body>
 </html>
